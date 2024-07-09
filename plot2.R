@@ -21,14 +21,17 @@ hc_feb07[, -c(1, 2)] = sapply(hc_feb07[, -c(1, 2)], as.numeric)
 
 # Creates date time column
 hc_feb07$Date_Time = make_datetime(year(hc_feb07$Date), month(hc_feb07$Date), day(hc_feb07$Date),
-                                   hour(hc_feb07$Time), minute(hc_feb07$Time), second(hc_feb07$Time))
+                                  hour(hc_feb07$Time), minute(hc_feb07$Time), second(hc_feb07$Time))
 
 # Start PNG device
 png(file="plot2.png",width=480,height=480)
 
 # Plot global active power along the time frame
 with(hc_feb07, plot(Date_Time, Global_active_power, type = "l", ylab = "Global Active Power (kilowatts)",
-                    xlab = ""))
+                    xlab = "", xaxt = "n"))
+
+# Change the x-axis labels to abbreviated format
+axis(1, at=c(dmy_hms("01/02/2007 00:00:00"), dmy_hms("02/02/2007 00:00:00"), dmy_hms("03/02/2007 00:00:00")), labels=c("Thu","Fri","Sat"))  
 
 # Close PNG device
 dev.off()

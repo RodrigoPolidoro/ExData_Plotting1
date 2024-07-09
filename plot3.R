@@ -28,10 +28,11 @@ png(file="plot3.png",width=480,height=480)
 
 # Plot energy sub metering along the time frame
 with(hc_feb07, {
-    plot(Date_Time, Sub_metering_1, type = "l", ylab = "Energy sub metering", xlab = "", col = "black")
+    plot(Date_Time, Sub_metering_1, type = "l", ylab = "Energy sub metering", xlab = "", col = "black", xaxt = "n")
     lines(Date_Time, Sub_metering_2, col = "red")
     lines(Date_Time, Sub_metering_3, col = "blue")
     legend("topright", legend = c("Sub_metering_1", "Sub_metering_2", "Sub_metering_3"), lwd = 1, col = c("black", "blue", "red"), cex = 1)
+    axis(1, at=c(dmy_hms("01/02/2007 00:00:00"), dmy_hms("02/02/2007 00:00:00"), dmy_hms("03/02/2007 00:00:00")), labels=c("Thu","Fri","Sat"))  
 })
 
 # Close PNG device
